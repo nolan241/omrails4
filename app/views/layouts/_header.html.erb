@@ -1,34 +1,57 @@
 <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
   
-<div class="container">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-      <%= link_to "Pintersting", root_path, class: "navbar-brand" %>
-  </div>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <%= link_to "Pintersting", root_path, class: "navbar-brand" %>
+    </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
-    <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "About", about_path %></li> 
-      <li><%= link_to "Team", team_path %></li> 
-      <li><%= link_to "More", more_path %></li> 
-      <% if user_signed_in? %>
-      <li><%= link_to "Account Settings", edit_user_registration_path %></li> 
-      <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li> 
-      <% else %>
-      <li><%= link_to "Sign In", new_user_session_path %></li> 
-      <% end %>
+      
+        <!-- New Pin -->
+        <% if user_signed_in? %>
+          <button type="button" class="btn btn-default navbar-btn">
+            <span class="glyphicon glyphicon-pushpin"></span>
+            <%= link_to "New Pin", new_pin_path %>
+          </button>
+        <% end %>
 
+      <ul class="nav navbar-nav navbar-right">
+          
+          <!-- Menu Items -->
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "About", about_path %></li> 
+          <li><%= link_to "More", more_path %></li> 
+      
+          <!-- Account dropdown -->
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              Account <span class="caret"></span>
+              </a>
+            <ul class="dropdown-menu">
+              <!-- Account settings when logged in -->
+              <% if user_signed_in? %>
+                <li><%= link_to "Account Settings", edit_user_registration_path %></li> 
+                <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li> 
+              <!-- else sign in -->
+              
+              <% else %>
+                <li><%= link_to "Sign up", new_user_registration_path %></li>
+                <li><%= link_to "Sign In", new_user_session_path %></li>
+              <% end %>
+            </ul>
+          </li><!-- Account dropdown end -->
+      </ul><!-- /.navbar-right end -->
 
-    </ul>
-  </div><!-- /.navbar-collapse -->
- </div><!-- /.container end -->
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- /.container end -->
 
 </nav>
