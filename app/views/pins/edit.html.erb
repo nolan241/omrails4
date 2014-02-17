@@ -1,7 +1,11 @@
 <div class="panel panel-default">
 		  <div class="panel-heading">
-		  	<h1>Editing pin</h1>
+		  	<h1>Edit my pin</h1>
 		  </div>
+
+		  <div class="panel panel-default">
+					<%= image_tag @pin.image.url(:large), :class=> "show" %>
+			</div>
   <div class="panel-body">
 		<%= render 'form' %>
 	</div>
